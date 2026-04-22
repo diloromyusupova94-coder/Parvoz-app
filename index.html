@@ -5,82 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parvoz - Arab tili</title>
     <style>
+        /* Asosiy dizayn qoidalari */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(180deg, #e0f7fa 0%, #ffffff 100%);
-            height: 100vh;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(180deg, #b2ebf2 0%, #ffffff 100%);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            color: #004d40;
         }
+
         .header {
-            padding: 30px;
             text-align: center;
-            color: #006064;
-            letter-spacing: 5px;
+            padding: 40px 20px;
         }
-        .card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
-            width: 85%;
+
+        .header h1 {
+            font-size: 32px;
+            letter-spacing: 8px;
+            margin: 0;
+            color: #006064;
+        }
+
+        .header p {
+            font-style: italic;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* Kartochka dizayni */
+        .container {
+            width: 90%;
             max-width: 400px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border: 1px solid rgba(255,255,255,0.8);
-            margin-bottom: 20px;
-        }
-        .root-word {
-            font-size: 40px;
-            color: #006064;
             text-align: center;
-            margin: 10px 0;
-            font-family: 'Times New Roman', serif;
         }
-        .meaning-tree {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .branch {
-            background: white;
-            padding: 10px 15px;
-            border-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            color: #333;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .btn-parvoz {
+
+        /* Ildiz doirasi */
+        .root-circle {
+            width: 120px;
+            height: 120px;
             background: #00acc1;
             color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 30px;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,172,193,0.3);
-            margin-top: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 20px auto;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,172,193,0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 5px solid white;
+        }
+
+        .root-circle:active {
+            transform: scale(0.9);
+        }
+
+        /* Shoxchalar (Yashirin holatda) */
+        #branches {
+            display: none;
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .branch-item {
+            background: white;
+            margin-bottom: 12px;
+            padding: 15px;
+            border-radius: 15px;
+            border-left: 5px solid #00acc1;
+            animation: slideIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .branch-item strong {
+            display: block;
+            font-size: 20px;
+            color: #006064;
+            margin-bottom: 3px;
+        }
+
+        .branch-item span {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Animatsiyalar */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #00838f;
+            margin-top: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
         }
     </style>
 </head>
 <body>
+
     <div class="header">
         <h1>PARVOZ</h1>
-        <p>Arab tili — qanot!</p>
+        <p>Bilim bilan ko‘klarga ko‘taril</p>
     </div>
 
-    <div class="card">
-        <div style="text-align: center; color: #666; font-size: 14px;">Ildiz tahlili:</div>
-        <div class="root-word">ع ل م</div>
-        <div class="meaning-tree">
-            <div class="branch"><span>Olim (عَالِم)</span> <span>Biluvchi</span></div>
-            <div class="branch"><span>Ma'lum (مَعْلُوم)</span> <span>Bilinarli</span></div>
-            <div class="branch"><span>Muallim (مُعَلِّم)</span> <span>O'rgatuvchi</span></div>
+    <div class="container">
+        <div style="font-size: 14px; opacity: 0.7;">Ildizni tanlang va qanot yozing:</div>
+        
+        <div class="root-circle" onclick="toggleParvoz()">
+            علم
+        </div>
+
+        <div id="hintText" class="hint">Ildizga teging...</div>
+
+        <div id="branches">
+            <div class="branch-item" style="animation-delay: 0.1s;">
+                <strong>عَالِم (Olim)</strong>
+                <span>Ilm sohibi, anglovchi shaxs.</span>
+            </div>
+            <div class="branch-item" style="animation-delay: 0.2s;">
+                <strong>مُعَلِّم (Muallim)</strong>
+                <span>Boshqalarga ilm ulashuvchi, yo‘l ko‘rsatuvchi.</span>
+            </div>
+            <div class="branch-item" style="animation-delay: 0.3s;">
+                <strong>تَعْلِيم (Ta'lim)</strong>
+                <span>Ilm olish va o‘rganish jarayoni.</span>
+            </div>
+            <div class="branch-item" style="animation-delay: 0.4s;">
+                <strong>عَلَامَة (Alomat)</strong>
+                <span>Ma'lum bir narsani bildiruvchi belgi.</span>
+            </div>
         </div>
     </div>
 
-    <button class="btn-parvoz">PARVOZNI BOSHLASH</button>
+    <script>
+        function toggleParvoz() {
+            var branches = document.getElementById("branches");
+            var hint = document.getElementById("hintText");
+            var root = document.querySelector(".root-circle");
+
+            if (branches.style.display === "none" || branches.style.display === "") {
+                branches.style.display = "block";
+                hint.style.display = "none";
+                root.style.transform = "rotate(360deg)";
+                root.style.backgroundColor = "#00838f";
+            } else {
+                branches.style.display = "none";
+                hint.style.display = "block";
+                root.style.transform = "rotate(0deg)";
+                root.style.backgroundColor = "#00acc1";
+            }
+        }
+    </script>
+
 </body>
 </html>
