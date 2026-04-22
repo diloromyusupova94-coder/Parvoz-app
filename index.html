@@ -3,121 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parvoz - Arab tili</title>
+    <title>Parvoz - Arab tili platformasi</title>
     <style>
-        /* Asosiy dizayn qoidalari */
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(180deg, #b2ebf2 0%, #ffffff 100%);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #004d40;
+            display: flex; flex-direction: column; align-items: center;
+            color: #004d40; padding-bottom: 50px;
         }
 
-        .header {
-            text-align: center;
-            padding: 40px 20px;
+        .header { text-align: center; padding: 40px 20px; }
+        .header h1 { font-size: 32px; letter-spacing: 8px; margin: 0; color: #006064; }
+        .header p { font-style: italic; opacity: 0.8; margin-top: 5px; }
+
+        .section-title {
+            width: 90%; max-width: 450px;
+            margin: 20px 0 10px 0; font-weight: bold;
+            color: #00838f; text-transform: uppercase; font-size: 14px;
         }
 
-        .header h1 {
-            font-size: 32px;
-            letter-spacing: 8px;
-            margin: 0;
-            color: #006064;
-        }
-
-        .header p {
-            font-style: italic;
-            opacity: 0.8;
-            margin-top: 5px;
-        }
-
-        /* Kartochka dizayni */
         .container {
-            width: 90%;
-            max-width: 400px;
+            width: 90%; max-width: 450px;
             background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(15px);
-            border-radius: 30px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            backdrop-filter: blur(15px); border-radius: 30px;
+            padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border: 1px solid rgba(255,255,255,0.8);
-            text-align: center;
+            margin-bottom: 20px;
         }
 
-        /* Ildiz doirasi */
-        .root-circle {
-            width: 120px;
-            height: 120px;
-            background: #00acc1;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            margin: 20px auto;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0,172,193,0.3);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 5px solid white;
+        /* Video va Badge dizayni */
+        .video-wrapper {
+            position: relative; padding-bottom: 56.25%;
+            height: 0; overflow: hidden; border-radius: 15px;
+            background: #000; margin-top: 15px;
         }
-
-        .root-circle:active {
-            transform: scale(0.9);
+        .video-wrapper iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
         }
-
-        /* Shoxchalar (Yashirin holatda) */
-        #branches {
-            display: none;
-            margin-top: 25px;
-            text-align: left;
+        .level-badge {
+            display: inline-block; padding: 5px 12px;
+            border-radius: 20px; font-size: 11px; font-weight: bold; margin-bottom: 10px;
         }
-
-        .branch-item {
-            background: white;
-            margin-bottom: 12px;
-            padding: 15px;
-            border-radius: 15px;
-            border-left: 5px solid #00acc1;
-            animation: slideIn 0.5s ease-out forwards;
-            opacity: 0;
-        }
-
-        .branch-item strong {
-            display: block;
-            font-size: 20px;
-            color: #006064;
-            margin-bottom: 3px;
-        }
-
-        .branch-item span {
-            font-size: 14px;
-            color: #555;
-        }
-
-        /* Animatsiyalar */
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .hint {
-            font-size: 13px;
-            color: #00838f;
-            margin-top: 10px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
-        }
+        .boshlangich { background: #e8f5e9; color: #2e7d32; }
+        .orta { background: #fff3e0; color: #ef6c00; }
+        .yuqori { background: #ffebee; color: #c62828; }
+        
+        audio { width: 100%; height: 35px; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -127,53 +60,49 @@
         <p>Bilim bilan ko‘klarga ko‘taril</p>
     </div>
 
-    <div class="container">
-        <div style="font-size: 14px; opacity: 0.7;">Ildizni tanlang va qanot yozing:</div>
-        
-        <div class="root-circle" onclick="toggleParvoz()">
-            علم
-        </div>
-
-        <div id="hintText" class="hint">Ildizga teging...</div>
-
-        <div id="branches">
-            <div class="branch-item" style="animation-delay: 0.1s;">
-                <strong>عَالِم (Olim)</strong>
-                <span>Ilm sohibi, anglovchi shaxs.</span>
-            </div>
-            <div class="branch-item" style="animation-delay: 0.2s;">
-                <strong>مُعَلِّم (Muallim)</strong>
-                <span>Boshqalarga ilm ulashuvchi, yo‘l ko‘rsatuvchi.</span>
-            </div>
-            <div class="branch-item" style="animation-delay: 0.3s;">
-                <strong>تَعْلِيم (Ta'lim)</strong>
-                <span>Ilm olish va o‘rganish jarayoni.</span>
-            </div>
-            <div class="branch-item" style="animation-delay: 0.4s;">
-                <strong>عَلَامَة (Alomat)</strong>
-                <span>Ma'lum bir narsani bildiruvchi belgi.</span>
-            </div>
-        </div>
+    <div class="section-title">O‘quv darslari</div>
+    
+    <div id="lessons-list" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <p>Darslar yuklanmoqda...</p>
     </div>
 
     <script>
-        function toggleParvoz() {
-            var branches = document.getElementById("branches");
-            var hint = document.getElementById("hintText");
-            var root = document.querySelector(".root-circle");
+        // JSON fayldan ma'lumotni o'qish
+        async function loadLessons() {
+            try {
+                const response = await fetch('data.json');
+                const lessons = await response.json();
+                const listContainer = document.getElementById('lessons-list');
+                listContainer.innerHTML = ''; // "Yuklanmoqda" yozuvini o'chirish
 
-            if (branches.style.display === "none" || branches.style.display === "") {
-                branches.style.display = "block";
-                hint.style.display = "none";
-                root.style.transform = "rotate(360deg)";
-                root.style.backgroundColor = "#00838f";
-            } else {
-                branches.style.display = "none";
-                hint.style.display = "block";
-                root.style.transform = "rotate(0deg)";
-                root.style.backgroundColor = "#00acc1";
+                lessons.forEach(lesson => {
+                    const card = `
+                        <div class="container" style="text-align: left;">
+                            <span class="level-badge ${lesson.darajaClass}">${lesson.daraja} daraja</span>
+                            <h3 style="margin: 5px 0;">${lesson.mavzu}</h3>
+                            <p style="font-size: 14px; color: #444;">${lesson.tavsif}</p>
+                            
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/${lesson.videoID}" allowfullscreen></iframe>
+                            </div>
+
+                            <div style="margin-top: 15px; background: white; padding: 10px; border-radius: 12px;">
+                                <div style="font-size: 12px; margin-bottom: 5px; color: #666;">Dars audiosi:</div>
+                                <audio controls>
+                                    <source src="${lesson.audioURL}" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                    `;
+                    listContainer.innerHTML += card;
+                });
+            } catch (error) {
+                document.getElementById('lessons-list').innerHTML = '<p>Xatolik yuz berdi. data.json faylini tekshiring.</p>';
             }
         }
+
+        // Sahifa ochilishi bilan yuklash
+        loadLessons();
     </script>
 
 </body>
