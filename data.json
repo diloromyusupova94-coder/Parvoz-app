@@ -3,18 +3,18 @@
     "id": 1,
     "daraja": "Boshlang‘ich",
     "darajaClass": "boshlangich",
-    "mavzu": "Arab tili dunyosiga kirish",
-    "tavsif": "Ushbu darsda biz arab tilining o‘ziga xosligi va nima uchun uni 'qanot' deb atashimiz haqida gaplashamiz.",
-    "videoID": "dQw4w9WgXcQ",
-    "audioURL": "audio1.mp3"
+    "mavzu": "Arab tili — sirlar xazinasi",
+    "tavsif": "Nima uchun bu tilni o‘rganish bizga ajdodlarimiz dunyosini ochadi? Kirish darsi.",
+    "videoID": "", 
+    "audioURL": ""
   },
   {
     "id": 2,
     "daraja": "O‘rta",
     "darajaClass": "orta",
-    "mavzu": "Fe'llar tizimi va Ildiz",
-    "tavsif": "Arab tilidagi uch harfli ildiz tizimining mantiqiy tuzilishi.",
-    "videoID": "y_vX_ZtS7xM",
-    "audioURL": "audio2.mp3"
+    "mavzu": "Ildiz tizimining mantiqi",
+    "tavsif": "Sarf fanining asosi bo'lgan uch harfli ildizlar haqida tushuncha.",
+    "videoID": "",
+    "audioURL": ""
   }
 ]
